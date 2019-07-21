@@ -1,15 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
 
-const Container = styled.div(props => ({
-  backgroundColor: props.backgroundColor,
-  height: '100vh',
-}))
+import Header from '../Header'
+import { Container } from './style'
 
 function Layout({ children, backgroundColor }) {
   return (
     <Container backgroundColor={backgroundColor}>
+      <Header />
       {children}
     </Container>
   )
