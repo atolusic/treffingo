@@ -9,6 +9,7 @@ function Button({
   backgroundColor,
   color,
   margin,
+  hover,
 }) {
   return (
     <ButtonComponent
@@ -16,6 +17,7 @@ function Button({
       onClick={onClick}
       backgroundColor={backgroundColor}
       margin={margin}
+      hover={hover}
     >
       {buttonText}
     </ButtonComponent>
@@ -26,6 +28,10 @@ Button.defaultProps = {
   backgroundColor: '#ef9a9a',
   color: '#fff',
   margin: '0',
+  hover: {
+    backgroundColor: '#fff',
+    color: '#ef9a9a',
+  },
 }
 
 Button.propTypes = {
@@ -34,6 +40,10 @@ Button.propTypes = {
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
   margin: PropTypes.string,
+  hover: PropTypes.shape({
+    backgroundColor: PropTypes.string,
+    color: PropTypes.string,
+  }),
 }
 
 export default Button

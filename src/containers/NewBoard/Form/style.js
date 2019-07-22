@@ -1,17 +1,16 @@
 import styled from '@emotion/styled'
 
-import { common } from '../style'
-
-export const NewBoardFormContent = styled.div(() => ({
-  ...common,
+export const NewBoardFormContent = styled.div(props => ({
+  ...props.theme.board,
   height: '330px',
 }))
 
-export const ErrorMessage = styled.span(() => ({
+export const ErrorMessage = styled.p(() => ({
   color: '#000',
   fontSize: '15px',
-  display: 'inline-block',
-  padding: '10px 0',
+  display: 'block',
+  height: '15px',
+  margin: '6px 0 15px 0',
 }))
 
 export const FormHeader = styled.div(() => ({
@@ -45,7 +44,7 @@ export const FormMainContent = styled.div(() => ({
   },
 }))
 
-export const ButtonsWrapper = styled.div`
+export const ButtonWrapper = styled.div`
   width: 90%;
   display: flex;
   justify-content: flex-end;

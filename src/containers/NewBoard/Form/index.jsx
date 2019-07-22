@@ -10,7 +10,7 @@ import {
   FormHeader,
   FormMainContent,
   ErrorMessage,
-  ButtonsWrapper,
+  ButtonWrapper,
 } from './style'
 
 function NewBoardForm({ toggleFormClickHandler }) {
@@ -45,13 +45,11 @@ function NewBoardForm({ toggleFormClickHandler }) {
           setInputValue={setInputValue}
           onBlur={onInputBlur}
         />
-        {
-          !errorObj.isValid && <ErrorMessage>{errorObj.errorMessage}</ErrorMessage>
-        }
-        <ButtonsWrapper>
+        <ErrorMessage>{!errorObj.isValid && errorObj.errorMessage}</ErrorMessage>
+        <ButtonWrapper>
           <Button margin="0 5px 0 0" buttonText="Cancel" />
           <Button buttonText="Create" color="#d50000" backgroundColor="#fff" />
-        </ButtonsWrapper>
+        </ButtonWrapper>
       </FormMainContent>
     </NewBoardFormContent>
   )

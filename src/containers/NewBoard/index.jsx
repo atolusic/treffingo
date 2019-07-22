@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { NewBoardContent } from './style'
-import NewBoardButton from './Button'
+import NewBoardButton from '../../components/Board'
 import NewBoardForm from './Form'
 
 function NewBoard() {
@@ -14,9 +14,9 @@ function NewBoard() {
   return (
     <NewBoardContent>
       {
-        !isFormOpened
+        isFormOpened
           ? <NewBoardForm toggleFormClickHandler={toggleFormClickHandler} />
-          : <NewBoardButton toggleFormClickHandler={toggleFormClickHandler} />
+          : <NewBoardButton textContent="Create a new board..." onClick={toggleFormClickHandler} />
       }
     </NewBoardContent>
   )

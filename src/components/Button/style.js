@@ -1,6 +1,11 @@
 import styled from '@emotion/styled'
 
-export const ButtonComponent = styled.button(({ backgroundColor, color, margin }) => ({
+export const ButtonComponent = styled.button(({
+  backgroundColor,
+  color,
+  margin,
+  hover,
+}) => ({
   backgroundColor,
   width: '70px',
   height: '40px',
@@ -11,6 +16,10 @@ export const ButtonComponent = styled.button(({ backgroundColor, color, margin }
   fontSize: '15px',
   margin,
   fontWeight: 'bold',
+  cursor: 'pointer',
+  ':hover': {
+    ...hover,
+  },
 }))
 
 export const l = 'lint'

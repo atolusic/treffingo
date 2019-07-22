@@ -1,14 +1,17 @@
 import React from 'react'
-import './App.css'
+import { ThemeProvider } from 'emotion-theming'
 
 import Layout from './components/Layout'
 import Content from './components/Content'
+import theme from './App.style'
 
 function App() {
   return (
-    <Layout>
-      <Content />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Content />
+      </Layout>
+    </ThemeProvider>
   )
 }
 
