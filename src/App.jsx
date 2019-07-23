@@ -4,14 +4,17 @@ import { ThemeProvider } from 'emotion-theming'
 import Layout from './components/Layout'
 import Content from './components/Content'
 import theme from './App.style'
+import Store from './Context'
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Content />
-      </Layout>
-    </ThemeProvider>
+    <Store>
+      <ThemeProvider theme={theme}>
+        <Layout>
+          <Content />
+        </Layout>
+      </ThemeProvider>
+    </Store>
   )
 }
 
