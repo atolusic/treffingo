@@ -7,8 +7,8 @@ export const Context = createContext(null)
 
 function Store({ children }) {
   const initialState = { boards: [] }
-  const [getState, dispatch] = useReducer(boardReducer, initialState)
-  const providerValue = useMemo(() => ({ getState, dispatch }), [getState, dispatch])
+  const [state, dispatch] = useReducer(boardReducer, initialState)
+  const providerValue = useMemo(() => ({ state, dispatch }), [state, dispatch])
 
   return (
     <Context.Provider value={providerValue}>
