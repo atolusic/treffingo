@@ -6,7 +6,7 @@ import boardReducer from './reducers/boardReducer'
 export const Context = createContext(null)
 
 function Store({ children }) {
-  const initialState = { boards: {} }
+  const initialState = { boards: [] }
   const [getState, dispatch] = useReducer(boardReducer, initialState)
   const providerValue = useMemo(() => ({ getState, dispatch }), [getState, dispatch])
 
