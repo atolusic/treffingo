@@ -5,8 +5,9 @@ export const ContentWrapper = styled.div(() => ({
   display: 'flex',
   flexWrap: 'wrap',
   marginTop: '60px',
-  '& :not(:first-child)': {
-    marginLeft: '15px',
+  '& > *': {
+    marginRight: '15px',
+    marginTop: '15px',
   },
   backfaceVisibility: 'hidden',
 }))
