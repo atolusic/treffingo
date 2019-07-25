@@ -1,8 +1,9 @@
 import React from 'react'
 import { ThemeProvider } from 'emotion-theming'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Layout from './components/Layout'
-import Content from './containers/Content'
+import Home from './containers/Home'
 import theme from './App.style'
 import Store from './Context'
 
@@ -11,7 +12,11 @@ function App() {
     <Store>
       <ThemeProvider theme={theme}>
         <Layout>
-          <Content />
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={Home} />
+            </Switch>
+          </BrowserRouter>
         </Layout>
       </ThemeProvider>
     </Store>

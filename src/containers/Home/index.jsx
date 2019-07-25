@@ -10,7 +10,7 @@ import { getBoards } from '../../actions/board'
 
 import { ContentWrapper } from './style'
 
-function Content({ theme }) {
+function Home({ theme }) {
   const { state: { boards }, dispatch } = useContext(Context)
 
   const overrideBoardContent = {
@@ -39,7 +39,7 @@ function Content({ theme }) {
   )
 }
 
-Content.propTypes = {
+Home.propTypes = {
   theme: PropTypes.shape({
     colors: PropTypes.shape({
       white: PropTypes.string,
@@ -48,4 +48,4 @@ Content.propTypes = {
   }).isRequired,
 }
 
-export default withTheme(Content)
+export default withTheme(Home)
