@@ -1,22 +1,21 @@
 import React from 'react'
 import { ThemeProvider } from 'emotion-theming'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import theme from './App.style'
 
 import Layout from './components/Layout'
-import Home from './containers/Home'
-import theme from './App.style'
+import AppRouter from './components/Router'
+
 import Store from './Context'
+
+// TODO: make board actions async
 
 function App() {
   return (
     <Store>
       <ThemeProvider theme={theme}>
         <Layout>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={Home} />
-            </Switch>
-          </BrowserRouter>
+          <AppRouter />
         </Layout>
       </ThemeProvider>
     </Store>

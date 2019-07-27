@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { withTheme } from 'emotion-theming'
 import PropTypes from 'prop-types'
+import ReactRouterPropTypes from 'react-router-prop-types'
 
 import NewBoard from '../NewBoard'
 import Board from '../../components/Board'
@@ -10,7 +11,7 @@ import { getBoards } from '../../actions/board'
 
 import { ContentWrapper } from './style'
 
-function Home({ theme }) {
+function Home({ theme, history }) {
   const { state: { boards }, dispatch } = useContext(Context)
 
   const overrideBoardContent = {
@@ -20,7 +21,9 @@ function Home({ theme }) {
 
   useEffect(() => {
     dispatch(getBoards())
-  }, [])
+  }, [dispatch])
+
+  const onBoardClickHandler = boardId => history.push(`/b/${boardId}`)
 
   return (
     <ContentWrapper>
@@ -31,7 +34,7 @@ function Home({ theme }) {
             key={board.id}
             textContent={board.name}
             overrideBoardContent={overrideBoardContent}
-            onClick={() => console.log('On Board Click')}
+            onClick={() => onBoardClickHandler(board.id)}
           />
         )) : null
       }
@@ -40,6 +43,7 @@ function Home({ theme }) {
 }
 
 Home.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
   theme: PropTypes.shape({
     colors: PropTypes.shape({
       white: PropTypes.string,

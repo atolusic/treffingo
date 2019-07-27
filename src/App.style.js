@@ -1,6 +1,7 @@
 const colors = {
   white: '#fff',
   primary: '#ff5252',
+  blacky: '#333',
 }
 
 const board = {

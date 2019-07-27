@@ -7,7 +7,12 @@ import {
   parse,
   get,
 } from '../utils/localStorage'
-import { ADD_BOARD, GET_BOARDS } from '../constants/actionTypes'
+import {
+  ADD_BOARD,
+  GET_BOARDS,
+  GET_BOARD,
+  START_LOADING,
+} from '../constants/actionTypes'
 
 const boardsLs = ls('boards')
 
@@ -34,5 +39,18 @@ export const getBoards = () => {
   return {
     type: GET_BOARDS,
     payload: storedBoards,
+  }
+}
+
+export const startLoading = () => ({ type: START_LOADING })
+
+export const getBoardById = (boardId) => {
+  // TODO: add dispatch to start loading
+  const storedBoards = parse(boardsLs(get)())
+  const board = storedBoards.find(b => b.id === boardId)
+
+  return {
+    type: GET_BOARD,
+    payload: board,
   }
 }

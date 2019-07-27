@@ -5,6 +5,7 @@ export const ButtonComponent = styled.button(({
   color,
   margin,
   hover,
+  additionalStyle,
 }) => ({
   backgroundColor,
   width: '70px',
@@ -20,6 +21,7 @@ export const ButtonComponent = styled.button(({
   ':hover': {
     ...hover,
   },
+  ...additionalStyle,
 }))
 
 export const l = 'lint'
