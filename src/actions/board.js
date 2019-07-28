@@ -45,9 +45,10 @@ export const getBoards = async () => {
 
 export const startLoading = () => ({ type: START_LOADING })
 
-export const getBoardById = (boardId) => {
-  // TODO: add dispatch to start loading
-  const storedBoards = parse(boardsLs(get)())
+export const getBoardById = async (boardId, dispatch) => {
+  dispatch(startLoading())
+  const boardsJson = await boardsLs(get)()
+  const storedBoards = parse(boardsJson)
   const board = storedBoards.find(b => b.id === boardId)
 
   return {

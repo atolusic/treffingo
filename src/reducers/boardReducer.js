@@ -21,11 +21,12 @@ export default (state, action) => {
       return {
         ...state,
         selectedBoard: action.payload,
+        loading: false,
       }
     case START_LOADING:
       return {
         ...state,
-        true: true,
+        loading: true,
       }
     default:
       return state

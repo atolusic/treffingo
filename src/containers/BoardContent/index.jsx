@@ -5,19 +5,29 @@ import { Context } from '../../Context'
 
 import { getBoardById } from '../../actions/board'
 import NotFoundPage from '../../components/NotFoundPage'
+import Spinner from '../../components/Spinner'
 
 function BoardContent({ match, history }) {
-  const { state: { selectedBoard, boardNotFound }, dispatch } = useContext(Context)
+  const { state: { selectedBoard, loading }, dispatch } = useContext(Context)
   const { boardId } = match.params
 
   useEffect(() => {
-    dispatch(getBoardById(boardId))
+    const fetchBoard = async () => { dispatch(await getBoardById(boardId, dispatch)) }
+
+    fetchBoard()
   }, [boardId, dispatch])
+
+  let renderBoard = <Spinner />
+
+  if (selectedBoard && !loading) {
+    renderBoard = <p>{selectedBoard.name}</p>
+  } else if (!loading && !selectedBoard) {
+    renderBoard = <NotFoundPage notFoundText="Board not found." history={history} />
+  }
 
   return (
     <div>
-      {selectedBoard && selectedBoard.name}
-      {boardNotFound && <NotFoundPage notFoundText="Board not found." history={history} />}
+      {renderBoard}
     </div>
   )
 }
