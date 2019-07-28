@@ -33,8 +33,9 @@ export const addBoard = (name) => {
   }
 }
 
-export const getBoards = () => {
-  const storedBoards = parse(boardsLs(get)()) || []
+export const getBoards = async () => {
+  const boardsJson = await boardsLs(get)()
+  const storedBoards = parse(boardsJson) || []
 
   return {
     type: GET_BOARDS,

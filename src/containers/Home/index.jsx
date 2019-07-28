@@ -2,9 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import { withTheme } from 'emotion-theming'
 import PropTypes from 'prop-types'
 import ReactRouterPropTypes from 'react-router-prop-types'
+import { isEmpty } from 'lodash'
 
 import NewBoard from '../NewBoard'
 import Board from '../../components/Board'
+import Spinner from '../../components/Spinner'
 
 import { Context } from '../../Context'
 import { getBoards } from '../../actions/board'
@@ -20,24 +22,30 @@ function Home({ theme, history }) {
   }
 
   useEffect(() => {
-    dispatch(getBoards())
+    const fetchBoards = async () => { dispatch(await getBoards()) }
+
+    fetchBoards()
   }, [dispatch])
 
   const onBoardClickHandler = boardId => history.push(`/b/${boardId}`)
 
+  let renderBoards = <Spinner />
+
+  if (!isEmpty(boards)) {
+    renderBoards = boards.map(board => (
+      <Board
+        key={board.id}
+        textContent={board.name}
+        overrideBoardContent={overrideBoardContent}
+        onClick={() => onBoardClickHandler(board.id)}
+      />
+    ))
+  }
+
   return (
     <ContentWrapper>
       <NewBoard />
-      {
-        boards.length ? boards.map(board => (
-          <Board
-            key={board.id}
-            textContent={board.name}
-            overrideBoardContent={overrideBoardContent}
-            onClick={() => onBoardClickHandler(board.id)}
-          />
-        )) : null
-      }
+      {renderBoards}
     </ContentWrapper>
   )
 }
