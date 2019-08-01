@@ -6,6 +6,9 @@ import { Context } from '../../Context'
 import { getBoardById } from '../../actions/board'
 import NotFoundPage from '../../components/NotFoundPage'
 import Spinner from '../../components/Spinner'
+import Button from '../../components/Button'
+
+import { BoardContentHeader } from './style'
 
 function BoardContent({ match, history }) {
   const { state: { selectedBoard, loading }, dispatch } = useContext(Context)
@@ -17,7 +20,7 @@ function BoardContent({ match, history }) {
     fetchBoard()
   }, [boardId, dispatch])
 
-  let renderBoard = <Spinner />
+  let renderBoard = <Spinner fontSize="5px" top="1px" left="70px" />
 
   if (selectedBoard && !loading) {
     renderBoard = <p>{selectedBoard.name}</p>
@@ -26,9 +29,15 @@ function BoardContent({ match, history }) {
   }
 
   return (
-    <div>
+    <BoardContentHeader>
+      <Button
+        iconClass="fas fa-arrow-left"
+        buttonText="Take me back to homepage"
+        additionalStyle={{ width: '10%' }}
+        onClick={() => history.push('/')}
+      />
       {renderBoard}
-    </div>
+    </BoardContentHeader>
   )
 }
 

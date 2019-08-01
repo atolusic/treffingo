@@ -8,8 +8,6 @@ import AppRouter from './components/Router'
 
 import Store from './Context'
 
-// TODO: make board actions async
-
 function App() {
   return (
     <Store>

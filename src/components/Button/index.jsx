@@ -11,6 +11,7 @@ function Button({
   margin,
   hover,
   additionalStyle,
+  iconClass,
 }) {
   return (
     <ButtonComponent
@@ -21,12 +22,13 @@ function Button({
       hover={hover}
       additionalStyle={additionalStyle}
     >
-      {buttonText}
+      {iconClass ? <i className={iconClass} /> : buttonText}
     </ButtonComponent>
   )
 }
 
 Button.defaultProps = {
+  iconClass: '',
   backgroundColor: '#ef9a9a',
   additionalStyle: {},
   color: '#fff',
@@ -42,6 +44,7 @@ Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
+  iconClass: PropTypes.string,
   margin: PropTypes.string,
   additionalStyle: PropTypes.shape({}),
   hover: PropTypes.shape({

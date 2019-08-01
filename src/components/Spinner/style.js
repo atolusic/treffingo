@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 
 export default styled.div`
   color: #ff5252;
-  font-size: 10px;
+  font-size: ${props => props.fontSize};
   width: 1em;
   height: 1em;
   border-radius: 50%;
   position: relative;
-  left: 100px;
-  top: 60px;
+  left: ${props => props.left};
+  top: ${props => props.top};
   text-indent: -9999em;
   -webkit-animation: load4 1.3s infinite linear;
   animation: load4 1.3s infinite linear;

@@ -2,6 +2,11 @@ const colors = {
   white: '#fff',
   primary: '#ff5252',
   blacky: '#333',
+  shadow: '#ccc',
+}
+
+const fonts = {
+  primary: 'Russo One, sans-serif',
 }
 
 const board = {
@@ -20,4 +25,5 @@ const board = {
 export default {
   colors,
   board,
+  fonts,
 }
