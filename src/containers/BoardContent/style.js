@@ -1,12 +1,11 @@
 import styled from '@emotion/styled'
 
-// eslint-disable-next-line
 export const BoardContentHeader = styled.div(props => ({
   width: '30%',
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '40px',
   height: '100px',
+  marginBottom: '50px',
   p: {
     margin: '0 0 0 40px',
     fontFamily: props.theme.fonts.primary,
@@ -14,4 +13,15 @@ export const BoardContentHeader = styled.div(props => ({
     fontSize: '35px',
     textShadow: `2px 2px ${props.theme.colors.shadow}`,
   },
+}))
+
+export const BoardContentWrapper = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '0 40px',
+}))
+
+export const BoardContentMain = styled.div(() => ({
+  display: 'flex',
+  width: '100%',
 }))

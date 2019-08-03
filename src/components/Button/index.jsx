@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { ButtonComponent } from './style'
+import theme from '../../App.style'
 
 function Button({
   buttonText,
@@ -29,13 +30,13 @@ function Button({
 
 Button.defaultProps = {
   iconClass: '',
-  backgroundColor: '#ef9a9a',
+  backgroundColor: theme.colors.secondary,
   additionalStyle: {},
-  color: '#fff',
+  color: theme.colors.white,
   margin: '0',
   hover: {
-    backgroundColor: '#fff',
-    color: '#ef9a9a',
+    backgroundColor: theme.colors.white,
+    color: theme.colors.secondary,
   },
 }
 

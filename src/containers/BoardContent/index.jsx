@@ -7,8 +7,9 @@ import { getBoardById } from '../../actions/board'
 import NotFoundPage from '../../components/NotFoundPage'
 import Spinner from '../../components/Spinner'
 import Button from '../../components/Button'
+import NewList from '../NewList'
 
-import { BoardContentHeader } from './style'
+import { BoardContentHeader, BoardContentWrapper, BoardContentMain } from './style'
 
 function BoardContent({ match, history }) {
   const { state: { selectedBoard, loading }, dispatch } = useContext(Context)
@@ -29,15 +30,25 @@ function BoardContent({ match, history }) {
   }
 
   return (
-    <BoardContentHeader>
-      <Button
-        iconClass="fas fa-arrow-left"
-        buttonText="Take me back to homepage"
-        additionalStyle={{ width: '10%' }}
-        onClick={() => history.push('/')}
-      />
-      {renderBoard}
-    </BoardContentHeader>
+    <BoardContentWrapper>
+      <BoardContentHeader>
+        <Button
+          iconClass="fas fa-arrow-left"
+          buttonText="Take me back to homepage"
+          additionalStyle={{ width: '10%' }}
+          onClick={() => history.push('/')}
+        />
+        {renderBoard}
+      </BoardContentHeader>
+      {
+        selectedBoard && !loading
+          ? (
+            <BoardContentMain>
+              <NewList />
+            </BoardContentMain>
+          ) : null
+      }
+    </BoardContentWrapper>
   )
 }
 
