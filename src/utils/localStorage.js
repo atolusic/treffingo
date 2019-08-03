@@ -1,5 +1,5 @@
 const localStorageRef = window.localStorage
-const delay = 1500
+const delay = 10
 
 export const add = localStorage.setItem.bind(localStorageRef)
 export const remove = localStorage.removeItem.bind(localStorageRef)

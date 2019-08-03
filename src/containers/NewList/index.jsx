@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { withTheme } from 'emotion-theming'
 
 import Button from '../../components/Button'
+import List from '../List'
+
+import { NewListWrapper } from './style'
 
 const addListAdditionalStyle = {
   main: {
@@ -16,11 +19,14 @@ const addListAdditionalStyle = {
 
 function NewList({ theme }) {
   return (
-    <Button
-      buttonText="Add a list"
-      additionalStyle={addListAdditionalStyle.main}
-      hover={addListAdditionalStyle.hover}
-    />
+    <NewListWrapper>
+      <List />
+      <Button
+        buttonText="Add a list"
+        additionalStyle={addListAdditionalStyle.main}
+        hover={addListAdditionalStyle.hover}
+      />
+    </NewListWrapper>
   )
 }
 
