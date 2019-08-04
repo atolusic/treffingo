@@ -4,6 +4,7 @@ import { isEmpty } from 'lodash'
 
 import Input from '../../../components/Input'
 import Button from '../../../components/Button'
+import CloseButton from '../../../components/CloseButton'
 
 import { addBoard } from '../../../actions/board'
 import { Context } from '../../../Context'
@@ -44,9 +45,7 @@ function NewBoardForm({ toggleFormClickHandler }) {
     <NewBoardFormContent>
       <FormHeader>
         <p>Creating a board</p>
-        <button type="button" onClick={toggleFormClickHandler}>
-          <i className="fas fa-times-circle" />
-        </button>
+        <CloseButton onClick={toggleFormClickHandler} />
       </FormHeader>
       <FormMainContent>
         <p>What shall we call the board?</p>

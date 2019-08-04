@@ -18,14 +18,32 @@ const addListAdditionalStyle = {
 }
 
 function NewList({ theme }) {
+  const [isListOpened, toggleList] = useState(false)
+
+  const onAddListClickHandler = () => toggleList((prev) => {
+    if (prev) {
+      addListAdditionalStyle.main.opacity = '0'
+    } else {
+      addListAdditionalStyle.main.opacity = '1'
+    }
+
+    return !prev
+  })
+
   return (
     <NewListWrapper>
-      <List />
-      <Button
-        buttonText="Add a list"
-        additionalStyle={addListAdditionalStyle.main}
-        hover={addListAdditionalStyle.hover}
-      />
+      {
+        isListOpened
+          ? <List />
+          : (
+            <Button
+              buttonText="Add a list"
+              additionalStyle={addListAdditionalStyle.main}
+              hover={addListAdditionalStyle.hover}
+              onClick={onAddListClickHandler}
+            />
+          )
+      }
     </NewListWrapper>
   )
 }
