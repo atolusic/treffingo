@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from 'emotion-theming'
+import { Transition } from 'react-transition-group'
 
 import Button from '../../components/Button'
 import List from '../List'
 
-import { NewListWrapper } from './style'
+import { NewListWrapper, ListAnimationWrapper } from './style'
 
 const addListAdditionalStyle = {
   main: {
@@ -19,31 +20,32 @@ const addListAdditionalStyle = {
 
 function NewList({ theme }) {
   const [isListOpened, toggleList] = useState(false)
+  const [showButton, setShowButton] = useState(true)
 
-  const onAddListClickHandler = () => toggleList((prev) => {
-    if (prev) {
-      addListAdditionalStyle.main.opacity = '0'
-    } else {
-      addListAdditionalStyle.main.opacity = '1'
-    }
-
-    return !prev
-  })
+  const onAddListClickHandler = () => toggleList(prev => !prev)
 
   return (
     <NewListWrapper>
-      {
-        isListOpened
-          ? <List />
-          : (
-            <Button
-              buttonText="Add a list"
-              additionalStyle={addListAdditionalStyle.main}
-              hover={addListAdditionalStyle.hover}
-              onClick={onAddListClickHandler}
-            />
-          )
-      }
+      {showButton && (
+        <Button
+          buttonText="Add a list"
+          additionalStyle={addListAdditionalStyle.main}
+          hover={addListAdditionalStyle.hover}
+          onClick={onAddListClickHandler}
+        />
+      )}
+      <Transition
+        in={isListOpened}
+        unmountOnExit
+        onEntering={() => setShowButton(false)}
+        onExiting={() => setShowButton(true)}
+      >
+        {state => (
+          <ListAnimationWrapper state={state}>
+            <List />
+          </ListAnimationWrapper>
+        )}
+      </Transition>
     </NewListWrapper>
   )
 }
