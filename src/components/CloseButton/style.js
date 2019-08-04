@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
 // eslint-disable-next-line
-export const CloseButtonWrapper = styled.button(() => ({
+export const CloseButtonWrapper = styled.button(({ color }) => ({
   background: 'none',
   border: 0,
-  color: '#fff',
+  color,
   cursor: 'pointer',
   outline: 'none',
   i: {

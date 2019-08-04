@@ -19,10 +19,8 @@ const addListAdditionalStyle = {
 }
 
 function NewList({ theme }) {
-  const [isListOpened, toggleList] = useState(false)
+  const [showList, setShowList] = useState(false)
   const [showButton, setShowButton] = useState(true)
-
-  const onAddListClickHandler = () => toggleList(prev => !prev)
 
   return (
     <NewListWrapper>
@@ -31,18 +29,18 @@ function NewList({ theme }) {
           buttonText="Add a list"
           additionalStyle={addListAdditionalStyle.main}
           hover={addListAdditionalStyle.hover}
-          onClick={onAddListClickHandler}
+          onClick={() => setShowList(true)}
         />
       )}
       <Transition
-        in={isListOpened}
+        in={showList}
         unmountOnExit
         onEntering={() => setShowButton(false)}
         onExiting={() => setShowButton(true)}
       >
         {state => (
           <ListAnimationWrapper state={state}>
-            <List />
+            <List closeList={() => setShowList(false)} />
           </ListAnimationWrapper>
         )}
       </Transition>
