@@ -8,7 +8,7 @@ export const ListWrapper = styled.div(props => ({
   position: 'relative',
   button: {
     position: 'absolute',
-    right: '-15px',
+    right: '-13px',
     top: '-10px',
   },
 }))

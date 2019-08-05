@@ -6,7 +6,7 @@ import { CloseButtonWrapper } from './style'
 function CloseButton({ onClick, color }) {
   return (
     <CloseButtonWrapper type="button" onClick={onClick} color={color}>
-      <i className="fa fa-times-circle-o" />
+      <i className="fa fa-times" />
     </CloseButtonWrapper>
   )
 }

@@ -35,7 +35,7 @@ function BoardContent({ match, history }) {
         <Button
           iconClass="fas fa-arrow-left"
           buttonText="Take me back to homepage"
-          additionalStyle={{ width: '10%' }}
+          additionalStyle={{ width: '40px' }}
           onClick={() => history.push('/')}
         />
         {renderBoard}

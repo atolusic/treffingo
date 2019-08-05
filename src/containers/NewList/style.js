@@ -7,7 +7,7 @@ export const NewListWrapper = styled.div(props => ({
 }))
 
 export const ListAnimationWrapper = styled.div`
-  transition: opacity 1s;
+  transition: opacity .5s;
   opacity: ${({ state }) => {
     switch (state) {
       case 'entering':

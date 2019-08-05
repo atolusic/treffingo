@@ -10,7 +10,7 @@ import { NewListWrapper, ListAnimationWrapper } from './style'
 
 const addListAdditionalStyle = {
   main: {
-    width: '10%',
+    width: '140px',
     height: '100px',
   },
   hover: {
@@ -24,19 +24,28 @@ function NewList({ theme }) {
 
   return (
     <NewListWrapper>
-      {showButton && (
-        <Button
-          buttonText="Add a list"
-          additionalStyle={addListAdditionalStyle.main}
-          hover={addListAdditionalStyle.hover}
-          onClick={() => setShowList(true)}
-        />
-      )}
+      <Transition
+        in={showButton}
+        unmountOnExit
+        onExited={() => setShowList(true)}
+        onEntering={() => setShowList(false)}
+      >
+        {state => (
+          <ListAnimationWrapper state={state}>
+            <Button
+              buttonText="Add a list"
+              additionalStyle={addListAdditionalStyle.main}
+              hover={addListAdditionalStyle.hover}
+              onClick={() => setShowList(true)}
+            />
+          </ListAnimationWrapper>
+        )}
+      </Transition>
       <Transition
         in={showList}
         unmountOnExit
+        onExited={() => setShowButton(true)}
         onEntering={() => setShowButton(false)}
-        onExiting={() => setShowButton(true)}
       >
         {state => (
           <ListAnimationWrapper state={state}>
