@@ -4,7 +4,8 @@ import styled from '@emotion/styled'
 export const ListWrapper = styled.div(props => ({
   backgroundColor: props.theme.colors.white,
   width: '250px',
-  height: '250px',
+  ...props.theme.flexColumn,
+  ...props.theme.alignJustifyCenter,
   boxShadow: '0px 1px 10px 2px rgba(119,120,128,0.82)',
   position: 'relative',
   button: {

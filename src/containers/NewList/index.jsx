@@ -8,6 +8,7 @@ import List from '../List'
 
 import { NewListWrapper } from './style'
 import AnimateOpacity from '../../components/AnimateOpacity'
+import NewListForm from './NewListForm'
 
 const addListAdditionalStyle = {
   main: {
@@ -42,7 +43,9 @@ function NewList({ theme }) {
         onExited={() => setShowButton(true)}
         onEntering={() => setShowButton(false)}
       >
-        <List closeList={() => setShowList(false)} />
+        <List closeList={() => setShowList(false)}>
+          <NewListForm />
+        </List>
       </AnimateOpacity>
     </NewListWrapper>
   )

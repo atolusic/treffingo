@@ -24,6 +24,11 @@ const flexColumn = {
   flexDirection: 'column',
 }
 
+const alignJustifyCenter = {
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
 const board = {
   backgroundColor: colors.primary,
   width: '310px',
@@ -38,6 +43,7 @@ const board = {
 }
 
 export default {
+  alignJustifyCenter,
   colors,
   board,
   fonts,
