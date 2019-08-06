@@ -6,7 +6,8 @@ import { Transition } from 'react-transition-group'
 import Button from '../../components/Button'
 import List from '../List'
 
-import { NewListWrapper, ListAnimationWrapper } from './style'
+import { NewListWrapper } from './style'
+import AnimateOpacity from '../../components/AnimateOpacity'
 
 const addListAdditionalStyle = {
   main: {
@@ -24,35 +25,25 @@ function NewList({ theme }) {
 
   return (
     <NewListWrapper>
-      <Transition
-        in={showButton}
-        unmountOnExit
-        onExited={() => setShowList(true)}
+      <AnimateOpacity
+        _in={showButton}
         onEntering={() => setShowList(false)}
+        onExited={() => setShowList(true)}
       >
-        {state => (
-          <ListAnimationWrapper state={state}>
-            <Button
-              buttonText="Add a list"
-              additionalStyle={addListAdditionalStyle.main}
-              hover={addListAdditionalStyle.hover}
-              onClick={() => setShowList(true)}
-            />
-          </ListAnimationWrapper>
-        )}
-      </Transition>
-      <Transition
-        in={showList}
-        unmountOnExit
+        <Button
+          buttonText="Add a list"
+          additionalStyle={addListAdditionalStyle.main}
+          hover={addListAdditionalStyle.hover}
+          onClick={() => setShowList(true)}
+        />
+      </AnimateOpacity>
+      <AnimateOpacity
+        _in={showList}
         onExited={() => setShowButton(true)}
         onEntering={() => setShowButton(false)}
       >
-        {state => (
-          <ListAnimationWrapper state={state}>
-            <List closeList={() => setShowList(false)} />
-          </ListAnimationWrapper>
-        )}
-      </Transition>
+        <List closeList={() => setShowList(false)} />
+      </AnimateOpacity>
     </NewListWrapper>
   )
 }
