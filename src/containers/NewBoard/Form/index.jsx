@@ -1,39 +1,26 @@
 import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
 
 import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import CloseButton from '../../../components/CloseButton'
+import ErrorMessage from '../../../components/ErrorMessage'
 
 import { addBoard } from '../../../actions/board'
 import { Context } from '../../../Context'
+import useValidation from '../../../utils/useValidation'
 
 import {
   NewBoardFormContent,
   FormHeader,
   FormMainContent,
-  ErrorMessage,
   ButtonWrapper,
 } from './style'
 
 function NewBoardForm({ toggleFormClickHandler }) {
   const [inputValue, setInputValue] = useState('')
   const { dispatch } = useContext(Context)
-  const [errorObj, setError] = useState({
-    isValid: true,
-    errorMessage: 'Oops! Looks like you forgot the name!',
-  })
-
-  const onInputBlur = () => {
-    const checkIfInputIsEmpty = fn => val => fn(val)
-
-    if (checkIfInputIsEmpty(isEmpty)(inputValue)) {
-      setError(s => ({ ...s, isValid: false }))
-    } else {
-      setError(s => ({ ...s, isValid: true }))
-    }
-  }
+  const { isValid, onE } = useValidation(inputValue)
 
   const onCreateClickHandler = () => {
     dispatch(addBoard(inputValue))
@@ -52,9 +39,9 @@ function NewBoardForm({ toggleFormClickHandler }) {
         <Input
           inputValue={inputValue}
           setInputValue={setInputValue}
-          onBlur={onInputBlur}
+          onBlur={onE}
         />
-        <ErrorMessage>{!errorObj.isValid && errorObj.errorMessage}</ErrorMessage>
+        {!isValid && <ErrorMessage message="Oops! Looks like you forgot the name!" />}
         <ButtonWrapper>
           <Button onClick={toggleFormClickHandler} margin="0 5px 0 0" buttonText="Cancel" />
           <Button onClick={onCreateClickHandler} buttonText="Create" color="#d50000" backgroundColor="#fff" />

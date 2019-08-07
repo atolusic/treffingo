@@ -8,6 +8,8 @@ function Input({
   inputValue,
   setInputValue,
   onBlur,
+  additionalStyle,
+  placeholder,
 }) {
   const onChange = (e, setValue) => {
     setValue(e.target.value)
@@ -19,6 +21,8 @@ function Input({
       value={inputValue}
       onChange={e => onChange(e, setInputValue)}
       onBlur={onBlur}
+      additionalStyle={additionalStyle}
+      placeholder={placeholder}
     />
   )
 }
@@ -26,6 +30,8 @@ function Input({
 Input.defaultProps = {
   width: '90%',
   onBlur: () => {},
+  additionalStyle: {},
+  placeholder: '',
 }
 
 Input.propTypes = {
@@ -33,6 +39,8 @@ Input.propTypes = {
   inputValue: PropTypes.string.isRequired,
   setInputValue: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  additionalStyle: PropTypes.shape(),
+  placeholder: PropTypes.string,
 }
 
 export default Input

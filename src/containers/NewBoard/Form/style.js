@@ -5,14 +5,6 @@ export const NewBoardFormContent = styled.div(props => ({
   height: '330px',
 }))
 
-export const ErrorMessage = styled.p(() => ({
-  color: '#000',
-  fontSize: '15px',
-  display: 'block',
-  height: '15px',
-  margin: '6px 0 15px 0',
-}))
-
 export const FormHeader = styled.div(() => ({
   padding: '15px 20px',
   display: 'flex',
@@ -34,4 +26,5 @@ export const ButtonWrapper = styled.div`
   width: 90%;
   display: flex;
   justify-content: flex-end;
+  margin-top: 40px;
 `

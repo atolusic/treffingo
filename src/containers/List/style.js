@@ -7,6 +7,7 @@ export const ListWrapper = styled.div(props => ({
   ...props.theme.flexColumn,
   ...props.theme.alignJustifyCenter,
   boxShadow: '0px 1px 10px 2px rgba(119,120,128,0.82)',
+  padding: '5px',
   position: 'relative',
   button: {
     position: 'absolute',
