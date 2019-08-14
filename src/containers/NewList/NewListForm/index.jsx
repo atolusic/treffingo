@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import { NewListFormWrapper } from './style'
+
 import Input from '../../../components/Input'
 
 import useValidation from '../../../utils/useValidation'
@@ -16,13 +18,15 @@ function NewListForm() {
   const { isValid, onE } = useValidation(true)
 
   return (
-    <Input
-      inputValue={inputValue}
-      setInputValue={setInputValue}
-      additionalStyle={newListFormInputStyle}
-      placeholder="add a list"
-      onBlur={onE}
-    />
+    <NewListFormWrapper>
+      <Input
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        additionalStyle={newListFormInputStyle}
+        placeholder="add a list"
+        onBlur={onE}
+      />
+    </NewListFormWrapper>
   )
 }
 

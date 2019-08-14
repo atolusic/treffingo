@@ -1,13 +1,16 @@
 import React from 'react'
 
-import { HeaderText, HeaderWrapper } from './style'
 import Svg from '../Svg'
+import Switch from '../Switch'
+
+import { HeaderText, HeaderWrapper } from './style'
 
 function Header() {
   return (
     <HeaderWrapper>
       <Svg svgName="exam" />
       <HeaderText>treffingo</HeaderText>
+      <Switch />
     </HeaderWrapper>
   )
 }
