@@ -10,6 +10,7 @@ function Store({ children }) {
     boards: [],
     selectedBoard: null,
     loading: false,
+    darkMode: false,
   }
   const [state, dispatch] = useReducer(boardReducer, initialState)
   const providerValue = useMemo(() => ({ state, dispatch }), [state, dispatch])

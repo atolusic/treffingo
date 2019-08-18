@@ -16,3 +16,5 @@ export const ls = key => fn => set => new Promise((resolve, reject) => {
     }
   }, delay)
 })
+
+export const lsSync = key => fn => set => fn(key, set)

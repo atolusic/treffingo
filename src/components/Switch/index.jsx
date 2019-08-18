@@ -5,7 +5,6 @@ import { withTheme } from 'emotion-theming'
 
 import SwitchIcon from './SwitchIcon'
 
-
 function Switch({
   uncheckedIcon,
   checkedIcon,
@@ -20,10 +19,10 @@ function Switch({
       className: 'react-switch',
       id: 'small-radius-switch',
       handleDiameter: 23,
-      offColor: theme.colors.secondary,
-      onColor: theme.colors.primary,
-      offHandleColor: theme.colors.white,
-      onHandleColor: theme.colors.primary,
+      offColor: theme.colors.white,
+      onColor: theme.colors.white,
+      offHandleColor: theme.colors.secondary,
+      onHandleColor: theme.colors.secondary,
       height: 30,
       width: 60,
     }
@@ -40,7 +39,11 @@ function Switch({
           </SwitchIcon>
         )
       }
-      checkedIcon={checkedIcon}
+      checkedIcon={(
+        <SwitchIcon>
+          {checkedIcon}
+        </SwitchIcon>
+      )}
       aria-label="secret label"
       {...customStylingProps}
     />

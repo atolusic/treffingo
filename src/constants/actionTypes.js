@@ -3,3 +3,5 @@ export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const GET_BOARDS = 'GET_BOARDS'
 export const GET_BOARD = 'GET_BOARD'
 export const START_LOADING = 'START_LOADING'
+
+export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'

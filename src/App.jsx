@@ -3,7 +3,7 @@ import { ThemeProvider } from 'emotion-theming'
 
 import theme from './App.style'
 
-import Layout from './components/Layout'
+import Layout from './containers/Layout'
 import AppRouter from './components/Router'
 
 import Store from './Context'
