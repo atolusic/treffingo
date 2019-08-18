@@ -1,22 +1,31 @@
 import React, { useState } from 'react'
 import ReactSwitch from 'react-switch'
 import PropTypes from 'prop-types'
+import { withTheme } from 'emotion-theming'
 
-function Switch({ uncheckedIcon, checkedIcon, materialDesignStyle }) {
+import SwitchIcon from './SwitchIcon'
+
+
+function Switch({
+  uncheckedIcon,
+  checkedIcon,
+  smallRadiusSwitch,
+  theme,
+}) {
   const [checked, setChecked] = useState(false)
   let customStylingProps = {}
 
-  if (materialDesignStyle) {
+  if (smallRadiusSwitch) {
     customStylingProps = {
       className: 'react-switch',
-      id: 'material-switch',
-      boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.6)',
-      activeBoxShadow: '0px 0px 1px 10px rgba(0, 0, 0, 0.2)',
-      onColor: '#86d3ff',
-      onHandleColor: '#2693e6',
-      handleDiameter: 30,
-      height: 20,
-      width: 48,
+      id: 'small-radius-switch',
+      handleDiameter: 23,
+      offColor: theme.colors.secondary,
+      onColor: theme.colors.primary,
+      offHandleColor: theme.colors.white,
+      onHandleColor: theme.colors.primary,
+      height: 30,
+      width: 60,
     }
   }
 
@@ -24,7 +33,13 @@ function Switch({ uncheckedIcon, checkedIcon, materialDesignStyle }) {
     <ReactSwitch
       checked={checked}
       onChange={_checked => setChecked(_checked)}
-      uncheckedIcon={uncheckedIcon}
+      uncheckedIcon={
+        (
+          <SwitchIcon>
+            {uncheckedIcon}
+          </SwitchIcon>
+        )
+      }
       checkedIcon={checkedIcon}
       aria-label="secret label"
       {...customStylingProps}
@@ -35,13 +50,23 @@ function Switch({ uncheckedIcon, checkedIcon, materialDesignStyle }) {
 Switch.defaultProps = {
   uncheckedIcon: false,
   checkedIcon: false,
-  materialDesignStyle: true,
+  smallRadiusSwitch: true,
+  switchId: 'small-radius-switch',
 }
 
 Switch.propTypes = {
-  uncheckedIcon: PropTypes.bool,
-  checkedIcon: PropTypes.bool,
-  materialDesignStyle: PropTypes.bool,
+  uncheckedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  checkedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  smallRadiusSwitch: PropTypes.bool,
+  switchId: PropTypes.string,
+  theme: PropTypes.shape({
+    colors: PropTypes.shape({
+      white: PropTypes.string,
+      primary: PropTypes.string,
+      secondary: PropTypes.string,
+      blacky: PropTypes.string,
+    }),
+  }).isRequired,
 }
 
-export default Switch
+export default withTheme(Switch)

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from 'emotion-theming'
-import { Transition } from 'react-transition-group'
 
 import Button from '../../components/Button'
 import List from '../List'

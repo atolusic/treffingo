@@ -10,7 +10,9 @@ function Header() {
     <HeaderWrapper>
       <Svg svgName="exam" />
       <HeaderText>treffingo</HeaderText>
-      <Switch />
+      <Switch
+        uncheckedIcon={<Svg svgName="night" width="23" />}
+      />
     </HeaderWrapper>
   )
 }

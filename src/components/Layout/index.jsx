@@ -5,8 +5,9 @@ import Header from '../Header'
 import { Container } from './style'
 
 function Layout({ children, backgroundColor }) {
+
   return (
-    <Container backgroundColor={backgroundColor}>
+    <Container backgroundColor={'#030303'}>
       <Header />
       {children}
     </Container>
