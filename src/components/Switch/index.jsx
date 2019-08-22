@@ -10,8 +10,9 @@ function Switch({
   checkedIcon,
   smallRadiusSwitch,
   theme,
+  setTheme,
+  checked,
 }) {
-  const [checked, setChecked] = useState(false)
   let customStylingProps = {}
 
   if (smallRadiusSwitch) {
@@ -31,7 +32,7 @@ function Switch({
   return (
     <ReactSwitch
       checked={checked}
-      onChange={_checked => setChecked(_checked)}
+      onChange={() => setTheme()}
       uncheckedIcon={
         (
           <SwitchIcon>
@@ -60,6 +61,8 @@ Switch.defaultProps = {
 Switch.propTypes = {
   uncheckedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   checkedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  setTheme: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
   smallRadiusSwitch: PropTypes.bool,
   switchId: PropTypes.string,
   theme: PropTypes.shape({

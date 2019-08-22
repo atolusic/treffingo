@@ -2,6 +2,9 @@ import React, { createContext, useReducer, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import boardReducer from './reducers/boardReducer'
+import layoutReducer from './reducers/layoutReducer'
+
+import { getTheme } from './actions/layout'
 
 export const Context = createContext(null)
 
@@ -10,13 +13,17 @@ function Store({ children }) {
     boards: [],
     selectedBoard: null,
     loading: false,
-    darkMode: false,
   }
+
+  const layoutInitialState = { theme: getTheme() }
+
   const [state, dispatch] = useReducer(boardReducer, initialState)
-  const providerValue = useMemo(() => ({ state, dispatch }), [state, dispatch])
+  const [layoutState, layoutDispatch] = useReducer(layoutReducer, layoutInitialState)
+  const board = useMemo(() => ({ state, dispatch }), [state, dispatch])
+  const layout = useMemo(() => ({ layoutState, layoutDispatch }), [layoutState, layoutDispatch])
 
   return (
-    <Context.Provider value={providerValue}>
+    <Context.Provider value={{ ...layout, ...board }}>
       {children}
     </Context.Provider>
   )

@@ -5,3 +5,4 @@ export const GET_BOARD = 'GET_BOARD'
 export const START_LOADING = 'START_LOADING'
 
 export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
+export const GET_THEME = 'GET_THEME'
