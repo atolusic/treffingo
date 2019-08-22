@@ -1,5 +1,4 @@
 import {
-  GET_THEME,
   TOGGLE_DARK_MODE,
 } from '../constants/actionTypes'
 

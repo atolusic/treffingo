@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from 'emotion-theming'
 
@@ -9,7 +9,7 @@ import Header from '../../components/Header'
 import { Container, SwitchWrapper } from './style'
 
 import { Context } from '../../Context'
-import { getTheme, toggleDarkMode } from '../../actions/layout'
+import { toggleDarkMode } from '../../actions/layout'
 
 function Layout({ children, backgroundColor, theme }) {
   const { layoutState, layoutDispatch } = useContext(Context)
