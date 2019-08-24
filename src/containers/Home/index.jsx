@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import { withTheme } from 'emotion-theming'
 import PropTypes from 'prop-types'
 import ReactRouterPropTypes from 'react-router-prop-types'
-import { isEmpty } from 'lodash'
 
 import NewBoard from '../NewBoard'
 import Board from '../../components/Board'
@@ -31,7 +30,7 @@ function Home({ theme, history }) {
 
   let renderBoards = <Spinner />
 
-  if (!isEmpty(boards)) {
+  if (boards) {
     renderBoards = boards.map(board => (
       <Board
         key={board.id}

@@ -11,6 +11,6 @@ export const HeaderWrapper = styled.div`
 export const HeaderText = styled.p`
   font-family: 'Russo One', sans-serif;
   font-size: 60px;
-  color: #333;
+  color: ${props => props.titleColor};
   text-shadow: ${props => `2px 2px ${props.theme.colors.shadow}`};
 `

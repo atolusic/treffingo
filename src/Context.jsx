@@ -10,7 +10,7 @@ export const Context = createContext(null)
 
 function Store({ children }) {
   const initialState = {
-    boards: [],
+    boards: null,
     selectedBoard: null,
     loading: false,
   }

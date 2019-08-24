@@ -5,6 +5,7 @@ import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import CloseButton from '../../../components/CloseButton'
 import ErrorMessage from '../../../components/ErrorMessage'
+import Spinner from '../../../components/Spinner'
 
 import { addBoard } from '../../../actions/board'
 import { Context } from '../../../Context'
@@ -19,11 +20,11 @@ import {
 
 function NewBoardForm({ toggleFormClickHandler }) {
   const [inputValue, setInputValue] = useState('')
-  const { dispatch } = useContext(Context)
+  const { state: { loading, boards }, dispatch } = useContext(Context)
   const { isValid, onE } = useValidation(inputValue)
 
-  const onCreateClickHandler = () => {
-    dispatch(addBoard(inputValue))
+  const onCreateClickHandler = async () => {
+    dispatch(await addBoard(inputValue, dispatch))
 
     setInputValue('')
   }
@@ -43,8 +44,18 @@ function NewBoardForm({ toggleFormClickHandler }) {
         />
         {!isValid && <ErrorMessage message="Oops! Looks like you forgot the name!" />}
         <ButtonWrapper>
-          <Button onClick={toggleFormClickHandler} margin="0 5px 0 0" buttonText="Cancel" />
-          <Button onClick={onCreateClickHandler} buttonText="Create" color="#d50000" backgroundColor="#fff" />
+          <Button onClick={toggleFormClickHandler} margin="0 5px 0 0" buttonContent="Cancel" />
+          <Button
+            onClick={onCreateClickHandler}
+            buttonContent={
+              loading && boards
+                ? <Spinner fontSize="3px" top="1px" left="25px" />
+                : 'Create'
+            }
+            color="#d50000"
+            disabled={(loading && !!boards) || !inputValue}
+            backgroundColor="#fff"
+          />
         </ButtonWrapper>
       </FormMainContent>
     </NewBoardFormContent>

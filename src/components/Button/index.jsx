@@ -5,7 +5,7 @@ import { ButtonComponent } from './style'
 import theme from '../../App.style'
 
 function Button({
-  buttonText,
+  buttonContent,
   onClick,
   backgroundColor,
   color,
@@ -13,6 +13,7 @@ function Button({
   hover,
   additionalStyle,
   iconClass,
+  disabled,
 }) {
   return (
     <ButtonComponent
@@ -22,13 +23,15 @@ function Button({
       margin={margin}
       hover={hover}
       additionalStyle={additionalStyle}
+      disabled={disabled}
     >
-      {iconClass ? <i className={iconClass} /> : buttonText}
+      {iconClass ? <i className={iconClass} /> : buttonContent}
     </ButtonComponent>
   )
 }
 
 Button.defaultProps = {
+  disabled: false,
   iconClass: '',
   backgroundColor: theme.colors.secondary,
   additionalStyle: {},
@@ -41,7 +44,12 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  buttonText: PropTypes.string.isRequired,
+  buttonContent: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.element,
+  ]).isRequired,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   backgroundColor: PropTypes.string,
   color: PropTypes.string,

@@ -7,6 +7,7 @@ export const ButtonComponent = styled.button(({
   margin,
   hover,
   additionalStyle,
+  disabled,
 }) => ({
   backgroundColor,
   width: '70px',
@@ -21,7 +22,8 @@ export const ButtonComponent = styled.button(({
   fontSize: '15px',
   margin,
   fontWeight: 'bold',
-  cursor: 'pointer',
+  cursor: disabled ? 'not-allowed' : 'pointer',
+  opacity: disabled ? '0.8' : '1',
   ':hover': {
     ...hover,
   },

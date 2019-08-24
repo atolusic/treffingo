@@ -31,7 +31,7 @@ function NewList({ theme }) {
         onExited={() => setShowList(true)}
       >
         <Button
-          buttonText="Add a list"
+          buttonContent="Add a list"
           additionalStyle={addListAdditionalStyle.main}
           hover={addListAdditionalStyle.hover}
           onClick={() => setShowList(true)}

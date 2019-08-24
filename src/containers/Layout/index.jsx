@@ -14,10 +14,18 @@ import { toggleDarkMode } from '../../actions/layout'
 function Layout({ children, backgroundColor, theme }) {
   const { layoutState, layoutDispatch } = useContext(Context)
   const { dark } = layoutState.theme
+  let bg = backgroundColor
+  let titleColor = theme.colors.blacky
+
+  if (dark) {
+    bg = theme.colors.blacky
+    titleColor = backgroundColor
+  }
+
   // '#030303'
 
   return (
-    <Container backgroundColor={dark ? theme.colors.blacky : backgroundColor}>
+    <Container backgroundColor={bg}>
       <SwitchWrapper>
         <Switch
           uncheckedIcon={<Svg svgName="night" width="23" />}
@@ -26,7 +34,7 @@ function Layout({ children, backgroundColor, theme }) {
           checked={dark}
         />
       </SwitchWrapper>
-      <Header />
+      <Header titleColor={titleColor} />
       {children}
     </Container>
   )

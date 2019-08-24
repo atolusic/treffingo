@@ -12,7 +12,7 @@ function NotFoundPage({ history, notFoundText }) {
       404
       <p>{notFoundText}</p>
       <Button
-        buttonText="Take me back to homepage"
+        buttonContent="Take me back to homepage"
         additionalStyle={{ width: '30%' }}
         onClick={() => history.push('/')}
       />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactSwitch from 'react-switch'
 import PropTypes from 'prop-types'
 import { withTheme } from 'emotion-theming'
@@ -59,8 +59,16 @@ Switch.defaultProps = {
 }
 
 Switch.propTypes = {
-  uncheckedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  checkedIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  uncheckedIcon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.element,
+  ]),
+  checkedIcon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.element,
+  ]),
   setTheme: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
   smallRadiusSwitch: PropTypes.bool,

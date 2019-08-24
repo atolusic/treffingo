@@ -34,7 +34,7 @@ function BoardContent({ match, history }) {
       <BoardContentHeader>
         <Button
           iconClass="fas fa-arrow-left"
-          buttonText="Take me back to homepage"
+          buttonContent="Take me back to homepage"
           additionalStyle={{ width: '40px' }}
           onClick={() => history.push('/')}
         />

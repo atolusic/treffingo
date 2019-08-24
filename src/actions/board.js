@@ -15,17 +15,20 @@ import {
 } from '../constants/actionTypes'
 
 const boardsLs = ls('boards')
+const addToLocalStorage = boardsLs(add)
 
-export const addBoard = (name) => {
-  const storedBoards = parse(boardsLs(get)())
-  const addToLocalStorage = boardsLs(add)
+export const startLoading = () => ({ type: START_LOADING })
 
+export const addBoard = async (name, dispatch) => {
+  dispatch(startLoading())
+  const jsonBoards = await boardsLs(get)()
+  const storedBoards = parse(jsonBoards)
   const payload = {
     id: shortid.generate(),
     name,
   }
 
-  addToLocalStorage(!storedBoards ? stringify([payload]) : stringify([...storedBoards, payload]))
+  await addToLocalStorage(stringify([...storedBoards, payload]))
 
   return {
     type: ADD_BOARD,
@@ -37,13 +40,15 @@ export const getBoards = async () => {
   const boardsJson = await boardsLs(get)()
   const storedBoards = parse(boardsJson) || []
 
+  if (!boardsJson) {
+    addToLocalStorage(stringify([]))
+  }
+
   return {
     type: GET_BOARDS,
     payload: storedBoards,
   }
 }
-
-export const startLoading = () => ({ type: START_LOADING })
 
 export const getBoardById = async (boardId, dispatch) => {
   dispatch(startLoading())

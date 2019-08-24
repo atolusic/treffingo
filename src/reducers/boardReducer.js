@@ -16,6 +16,7 @@ export default (state, action) => {
       return {
         ...state,
         boards: [...state.boards, action.payload],
+        loading: false,
       }
     case GET_BOARD:
       return {
