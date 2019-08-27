@@ -9,6 +9,7 @@ function AnimateOpacity({
   onExited,
   _in,
   children,
+  timeout,
 }) {
   return (
     <Transition
@@ -16,6 +17,7 @@ function AnimateOpacity({
       unmountOnExit
       onExited={onExited}
       onEntering={onEntering}
+      timeout={timeout}
     >
       {state => (
         <AnimationWrapper state={state}>
@@ -28,6 +30,7 @@ function AnimateOpacity({
 
 AnimateOpacity.propTypes = {
   onEntering: PropTypes.func.isRequired,
+  timeout: PropTypes.number.isRequired,
   onExited: PropTypes.func.isRequired,
   _in: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([

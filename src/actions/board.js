@@ -15,13 +15,13 @@ import {
 } from '../constants/actionTypes'
 
 const boardsLs = ls('boards')
-const addToLocalStorage = boardsLs(add)
+const addToLocalStorage = boardsLs(add, 500)
 
 export const startLoading = () => ({ type: START_LOADING })
 
 export const addBoard = async (name, dispatch) => {
   dispatch(startLoading())
-  const jsonBoards = await boardsLs(get)()
+  const jsonBoards = await boardsLs(get, 300)()
   const storedBoards = parse(jsonBoards)
   const payload = {
     id: shortid.generate(),
@@ -37,7 +37,7 @@ export const addBoard = async (name, dispatch) => {
 }
 
 export const getBoards = async () => {
-  const boardsJson = await boardsLs(get)()
+  const boardsJson = await boardsLs(get, 1000)()
   const storedBoards = parse(boardsJson) || []
 
   if (!boardsJson) {
@@ -52,7 +52,7 @@ export const getBoards = async () => {
 
 export const getBoardById = async (boardId, dispatch) => {
   dispatch(startLoading())
-  const boardsJson = await boardsLs(get)()
+  const boardsJson = await boardsLs(get, 1000)()
   const storedBoards = parse(boardsJson)
   const board = storedBoards.find(b => b.id === boardId)
 

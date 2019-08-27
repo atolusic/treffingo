@@ -29,6 +29,7 @@ function NewList({ theme }) {
         _in={showButton}
         onEntering={() => setShowList(false)}
         onExited={() => setShowList(true)}
+        timeout={50}
       >
         <Button
           buttonContent="Add a list"
@@ -41,6 +42,7 @@ function NewList({ theme }) {
         _in={showList}
         onExited={() => setShowButton(true)}
         onEntering={() => setShowButton(false)}
+        timeout={50}
       >
         <List closeList={() => setShowList(false)}>
           <NewListForm />

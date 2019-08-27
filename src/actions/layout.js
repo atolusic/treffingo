@@ -11,22 +11,33 @@ import {
 } from '../utils/localStorage'
 
 const themeLs = lsSync('theme')
+
 const getThemeFromLs = () => {
   const json = themeLs(get)()
   return json ? parse(json) : json
 }
 
-export const toggleDarkMode = () => ({
-  type: TOGGLE_DARK_MODE,
-})
+const setDarkMode = (dark) => {
+  const stringifiedInsertData = stringify({ dark })
+
+  themeLs(add)(stringifiedInsertData)
+}
+
+export const toggleDarkMode = () => {
+  const theme = getThemeFromLs()
+
+  setDarkMode(!theme.dark)
+
+  return {
+    type: TOGGLE_DARK_MODE,
+  }
+}
 
 export const getTheme = () => {
   const theme = getThemeFromLs()
 
   if (!theme) {
-    themeLs(add)(stringify({
-      dark: false,
-    }))
+    setDarkMode(false)
 
     return getThemeFromLs()
   }
