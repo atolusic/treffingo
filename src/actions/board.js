@@ -12,6 +12,7 @@ import {
   GET_BOARDS,
   GET_BOARD,
   START_LOADING,
+  BOARD_NOT_FOUND,
 } from '../constants/actionTypes'
 
 const boardsLs = ls('boards')
@@ -55,6 +56,12 @@ export const getBoardById = async (boardId, dispatch) => {
   const boardsJson = await boardsLs(get, 1000)()
   const storedBoards = parse(boardsJson)
   const board = storedBoards.find(b => b.id === boardId)
+
+  if (!board) {
+    return {
+      type: BOARD_NOT_FOUND,
+    }
+  }
 
   return {
     type: GET_BOARD,

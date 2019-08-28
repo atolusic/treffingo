@@ -3,6 +3,7 @@ import {
   GET_BOARDS,
   GET_BOARD,
   START_LOADING,
+  BOARD_NOT_FOUND,
 } from '../constants/actionTypes'
 
 export default (state, action) => {
@@ -22,6 +23,13 @@ export default (state, action) => {
       return {
         ...state,
         selectedBoard: action.payload,
+        boardNotFound: false,
+        loading: false,
+      }
+    case BOARD_NOT_FOUND:
+      return {
+        ...state,
+        boardNotFound: true,
         loading: false,
       }
     case START_LOADING:

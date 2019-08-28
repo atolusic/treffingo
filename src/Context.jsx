@@ -9,15 +9,16 @@ import { getTheme } from './actions/layout'
 export const Context = createContext(null)
 
 function Store({ children }) {
-  const initialState = {
+  const boardInitialState = {
     boards: null,
     selectedBoard: null,
+    boardNotFound: false,
     loading: false,
   }
 
   const layoutInitialState = { theme: getTheme() }
 
-  const [state, dispatch] = useReducer(boardReducer, initialState)
+  const [state, dispatch] = useReducer(boardReducer, boardInitialState)
   const [layoutState, layoutDispatch] = useReducer(layoutReducer, layoutInitialState)
   const board = useMemo(() => ({ state, dispatch }), [state, dispatch])
   const layout = useMemo(() => ({ layoutState, layoutDispatch }), [layoutState, layoutDispatch])

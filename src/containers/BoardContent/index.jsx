@@ -12,7 +12,7 @@ import NewList from '../NewList'
 import { BoardContentHeader, BoardContentWrapper, BoardContentMain } from './style'
 
 function BoardContent({ match, history }) {
-  const { state: { selectedBoard, loading }, dispatch } = useContext(Context)
+  const { state: { selectedBoard, loading, boardNotFound }, dispatch } = useContext(Context)
   const { boardId } = match.params
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function BoardContent({ match, history }) {
 
   if (selectedBoard && !loading) {
     renderBoard = <p>{selectedBoard.name}</p>
-  } else if (!loading && !selectedBoard) {
+  } else if (!loading && !selectedBoard && boardNotFound) {
     renderBoard = <NotFoundPage notFoundText="Board not found." history={history} />
   }
 
