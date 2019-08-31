@@ -1,19 +1,12 @@
 import { useState } from 'react'
 import { isEmpty } from 'lodash'
 
-function useValidation(inputValue) {
+function useValidation(fn = isEmpty) {
   const [isValid, setIsValid] = useState(true)
+  const setValid = f => val => setIsValid(!f(val))
 
   return {
-    onE: () => {
-      const checkIfInputIsEmpty = fn => val => fn(val)
-
-      if (checkIfInputIsEmpty(isEmpty)(inputValue)) {
-        setIsValid(false)
-      } else {
-        setIsValid(true)
-      }
-    },
+    setValid: val => setValid(fn)(val),
     isValid,
   }
 }

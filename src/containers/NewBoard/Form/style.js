@@ -14,7 +14,8 @@ export const FormHeader = styled.div(() => ({
   p: { fontSize: '23px' },
 }))
 
-export const FormMainContent = styled.div(() => ({
+export const FormMainContent = styled.form(() => ({
+  position: 'relative',
   padding: '15px 30px',
   p: { fontSize: '15px' },
   input: {

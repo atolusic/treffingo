@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import ReactRouterPropTypes from 'react-router-prop-types'
 
-import { Context } from '../../Context'
+import { Context } from '../../context'
 
 import { getBoardById } from '../../actions/board'
 import NotFoundPage from '../../components/NotFoundPage'
@@ -23,6 +23,7 @@ function BoardContent({ match, history }) {
 
   let renderBoard = <Spinner fontSize="5px" top="1px" left="70px" />
 
+  // TODO: fix this
   if (selectedBoard && !loading) {
     renderBoard = <p>{selectedBoard.name}</p>
   } else if (!loading && !selectedBoard && boardNotFound) {

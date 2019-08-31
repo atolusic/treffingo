@@ -1,23 +1,14 @@
 import React, { createContext, useReducer, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import boardReducer from './reducers/boardReducer'
-import layoutReducer from './reducers/layoutReducer'
+import boardReducer from '../reducers/boardReducer'
+import layoutReducer from '../reducers/layoutReducer'
 
-import { getTheme } from './actions/layout'
+import { boardInitialState, layoutInitialState } from './initialState'
 
 export const Context = createContext(null)
 
 function Store({ children }) {
-  const boardInitialState = {
-    boards: null,
-    selectedBoard: null,
-    boardNotFound: false,
-    loading: false,
-  }
-
-  const layoutInitialState = { theme: getTheme() }
-
   const [state, dispatch] = useReducer(boardReducer, boardInitialState)
   const [layoutState, layoutDispatch] = useReducer(layoutReducer, layoutInitialState)
   const board = useMemo(() => ({ state, dispatch }), [state, dispatch])

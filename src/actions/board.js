@@ -13,23 +13,36 @@ import {
   GET_BOARD,
   START_LOADING,
   BOARD_NOT_FOUND,
+  ADD_BOARD_LIST,
 } from '../constants/actionTypes'
 
 const boardsLs = ls('boards')
-const addToLocalStorage = boardsLs(add, 500)
+const addToLocalStorage = (delay = 300) => boardsLs(add, delay)
+const addToLsWithStringify = (data, delay = 300) => addToLocalStorage(delay)(stringify(data))
+const getBoardsFromLs = async (delay = 300) => boardsLs(get, delay)()
+const getParsedBoardsFromLs = async (delay = 300) => {
+  const boards = await getBoardsFromLs(delay)
+
+  return parse(boards)
+}
+const getBoardFromLsById = async (id, delay = 300) => {
+  const storedBoards = parse(await getBoardsFromLs(delay))
+
+  return storedBoards.find(b => b.id === id)
+}
 
 export const startLoading = () => ({ type: START_LOADING })
 
 export const addBoard = async (name, dispatch) => {
   dispatch(startLoading())
-  const jsonBoards = await boardsLs(get, 300)()
-  const storedBoards = parse(jsonBoards)
+  const storedBoards = await getParsedBoardsFromLs()
   const payload = {
     id: shortid.generate(),
     name,
+    lists: [],
   }
 
-  await addToLocalStorage(stringify([...storedBoards, payload]))
+  await addToLsWithStringify([...storedBoards, payload])
 
   return {
     type: ADD_BOARD,
@@ -38,11 +51,11 @@ export const addBoard = async (name, dispatch) => {
 }
 
 export const getBoards = async () => {
-  const boardsJson = await boardsLs(get, 1000)()
+  const boardsJson = await getBoardsFromLs(1000)
   const storedBoards = parse(boardsJson) || []
 
   if (!boardsJson) {
-    addToLocalStorage(stringify([]))
+    addToLsWithStringify([])
   }
 
   return {
@@ -53,9 +66,7 @@ export const getBoards = async () => {
 
 export const getBoardById = async (boardId, dispatch) => {
   dispatch(startLoading())
-  const boardsJson = await boardsLs(get, 1000)()
-  const storedBoards = parse(boardsJson)
-  const board = storedBoards.find(b => b.id === boardId)
+  const board = await getBoardFromLsById(boardId, 0)
 
   if (!board) {
     return {
@@ -66,5 +77,26 @@ export const getBoardById = async (boardId, dispatch) => {
   return {
     type: GET_BOARD,
     payload: board,
+  }
+}
+
+export const addBoardList = async (listName, boardId) => {
+  const boards = await getParsedBoardsFromLs()
+  const list = {
+    name: listName,
+    createdAt: new Date(), // For now
+    items: [],
+  }
+
+  const payload = boards.map((board) => {
+    if (board.id === boardId) { board.lists.push(list) }
+    return board
+  })
+
+  await addToLsWithStringify(payload)
+
+  return {
+    type: ADD_BOARD_LIST,
+    payload,
   }
 }

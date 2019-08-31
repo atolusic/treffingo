@@ -8,7 +8,7 @@ import Header from '../../components/Header'
 
 import { Container, SwitchWrapper } from './style'
 
-import { Context } from '../../Context'
+import { Context } from '../../context'
 import { toggleDarkMode } from '../../actions/layout'
 
 function Layout({ children, backgroundColor, theme }) {

@@ -11,7 +11,7 @@ import NewListForm from './NewListForm'
 
 const addListAdditionalStyle = {
   main: {
-    width: '140px',
+    width: '150px',
     height: '100px',
   },
   hover: {
@@ -20,8 +20,8 @@ const addListAdditionalStyle = {
 }
 
 function NewList({ theme }) {
-  const [showList, setShowList] = useState(false)
-  const [showButton, setShowButton] = useState(true)
+  const [showList, setShowList] = useState(true)
+  const [showButton, setShowButton] = useState(false)
 
   return (
     <NewListWrapper>

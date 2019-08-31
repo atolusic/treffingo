@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import Input from '../../../components/Input'
@@ -8,8 +8,8 @@ import ErrorMessage from '../../../components/ErrorMessage'
 import Spinner from '../../../components/Spinner'
 
 import { addBoard } from '../../../actions/board'
-import { Context } from '../../../Context'
-import useValidation from '../../../utils/useValidation'
+import { Context } from '../../../context'
+import useForm from '../../../utils/useForm'
 
 import {
   NewBoardFormContent,
@@ -19,14 +19,18 @@ import {
 } from './style'
 
 function NewBoardForm({ toggleFormClickHandler }) {
-  const [inputValue, setInputValue] = useState('')
   const { state: { loading, boards }, dispatch } = useContext(Context)
-  const { isValid, onE } = useValidation(inputValue)
+  const {
+    isValid,
+    setValid,
+    inputValue,
+    onChange,
+    onSubmit,
+  } = useForm(dispatch, { fn: addBoard, params: [dispatch] })
 
-  const onCreateClickHandler = async () => {
-    dispatch(await addBoard(inputValue, dispatch))
-
-    setInputValue('')
+  const errorMessagePositioning = {
+    position: 'absolute',
+    bottom: '75px',
   }
 
   return (
@@ -35,18 +39,18 @@ function NewBoardForm({ toggleFormClickHandler }) {
         <p>Creating a board</p>
         <CloseButton onClick={toggleFormClickHandler} />
       </FormHeader>
-      <FormMainContent>
+      <FormMainContent onSubmit={onSubmit}>
         <p>What shall we call the board?</p>
         <Input
           inputValue={inputValue}
-          setInputValue={setInputValue}
-          onBlur={onE}
+          onChange={onChange}
+          onBlur={() => setValid(inputValue)}
         />
-        {!isValid && <ErrorMessage message="Oops! Looks like you forgot the name!" />}
+        {!isValid && <ErrorMessage positioning={errorMessagePositioning} message="Oops! Looks like you forgot the name!" />}
         <ButtonWrapper>
           <Button onClick={toggleFormClickHandler} margin="0 5px 0 0" buttonContent="Cancel" />
           <Button
-            onClick={onCreateClickHandler}
+            type="submit"
             buttonContent={
               loading && boards
                 ? <Spinner fontSize="3px" top="1px" left="25px" />

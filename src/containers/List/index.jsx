@@ -9,7 +9,7 @@ import { ListWrapper } from './style'
 function List({ closeList, theme, children }) {
   return (
     <ListWrapper>
-      <CloseButton onClick={closeList} color={theme.colors.secondary} />
+      <CloseButton onClick={closeList} color={theme.colors.primary} />
       {children}
     </ListWrapper>
   )
@@ -19,7 +19,7 @@ List.propTypes = {
   closeList: PropTypes.func.isRequired,
   theme: PropTypes.shape({
     colors: PropTypes.shape({
-      secondary: PropTypes.string,
+      primary: PropTypes.string,
     }),
   }).isRequired,
   children: PropTypes.oneOfType([

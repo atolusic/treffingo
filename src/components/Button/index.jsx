@@ -14,9 +14,11 @@ function Button({
   additionalStyle,
   iconClass,
   disabled,
+  type,
 }) {
   return (
     <ButtonComponent
+      type={type}
       color={color}
       onClick={onClick}
       backgroundColor={backgroundColor}
@@ -32,6 +34,8 @@ function Button({
 
 Button.defaultProps = {
   disabled: false,
+  type: 'button',
+  onClick: () => {},
   iconClass: '',
   backgroundColor: theme.colors.secondary,
   additionalStyle: {},
@@ -50,7 +54,8 @@ Button.propTypes = {
     PropTypes.element,
   ]).isRequired,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
   iconClass: PropTypes.string,

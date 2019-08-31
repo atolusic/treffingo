@@ -6,7 +6,7 @@ import theme from './App.style'
 import Layout from './containers/Layout'
 import AppRouter from './components/Router'
 
-import Store from './Context'
+import Store from './context'
 
 function App() {
   return (

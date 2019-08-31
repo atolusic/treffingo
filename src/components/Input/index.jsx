@@ -6,20 +6,16 @@ import { StyledInput } from './style'
 function Input({
   width,
   inputValue,
-  setInputValue,
+  onChange,
   onBlur,
   additionalStyle,
   placeholder,
 }) {
-  const onChange = (e, setValue) => {
-    setValue(e.target.value)
-  }
-
   return (
     <StyledInput
       width={width}
       value={inputValue}
-      onChange={e => onChange(e, setInputValue)}
+      onChange={onChange}
       onBlur={onBlur}
       additionalStyle={additionalStyle}
       placeholder={placeholder}
@@ -37,7 +33,7 @@ Input.defaultProps = {
 Input.propTypes = {
   width: PropTypes.string,
   inputValue: PropTypes.string.isRequired,
-  setInputValue: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   additionalStyle: PropTypes.shape(),
   placeholder: PropTypes.string,

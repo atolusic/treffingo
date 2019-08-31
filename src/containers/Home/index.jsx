@@ -7,7 +7,7 @@ import NewBoard from '../NewBoard'
 import Board from '../../components/Board'
 import Spinner from '../../components/Spinner'
 
-import { Context } from '../../Context'
+import { Context } from '../../context'
 import { getBoards } from '../../actions/board'
 
 import { ContentWrapper } from './style'

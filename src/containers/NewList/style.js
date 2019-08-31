@@ -4,4 +4,7 @@ import styled from '@emotion/styled'
 export const NewListWrapper = styled.div(props => ({
   ...props.theme.flexRow,
   width: '100%',
+  '& input': {
+    marginTop: '10px',
+  },
 }))

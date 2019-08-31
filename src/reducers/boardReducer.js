@@ -4,6 +4,7 @@ import {
   GET_BOARD,
   START_LOADING,
   BOARD_NOT_FOUND,
+  ADD_BOARD_LIST,
 } from '../constants/actionTypes'
 
 export default (state, action) => {
@@ -36,6 +37,11 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      }
+    case ADD_BOARD_LIST:
+      return {
+        ...state,
+        boards: action.payload,
       }
     default:
       return state
