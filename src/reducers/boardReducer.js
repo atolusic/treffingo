@@ -42,6 +42,7 @@ export default (state, action) => {
       return {
         ...state,
         boards: action.payload,
+        selectedBoard: action.selectedBoard,
       }
     default:
       return state

@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { withTheme } from 'emotion-theming'
 
 import Button from '../../components/Button'
-import List from '../List'
+import List from '../../components/List'
 
 import { NewListWrapper } from './style'
 import AnimateOpacity from '../../components/AnimateOpacity'
@@ -19,9 +17,9 @@ const addListAdditionalStyle = {
   },
 }
 
-function NewList({ theme }) {
-  const [showList, setShowList] = useState(true)
-  const [showButton, setShowButton] = useState(false)
+function NewList() {
+  const [showList, setShowList] = useState(false)
+  const [showButton, setShowButton] = useState(true)
 
   return (
     <NewListWrapper>
@@ -52,13 +50,4 @@ function NewList({ theme }) {
   )
 }
 
-NewList.propTypes = {
-  theme: PropTypes.shape({
-    colors: PropTypes.shape({
-      white: PropTypes.string,
-      primary: PropTypes.string,
-    }),
-  }).isRequired,
-}
-
-export default withTheme(NewList)
+export default NewList

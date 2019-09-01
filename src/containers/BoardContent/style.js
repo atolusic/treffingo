@@ -24,4 +24,7 @@ export const BoardContentWrapper = styled.div(() => ({
 export const BoardContentMain = styled.div(() => ({
   display: 'flex',
   width: '100%',
+  '& > *': {
+    marginRight: '10px',
+  },
 }))

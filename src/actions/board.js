@@ -82,14 +82,19 @@ export const getBoardById = async (boardId, dispatch) => {
 
 export const addBoardList = async (listName, boardId) => {
   const boards = await getParsedBoardsFromLs()
+  const selectedBoard = {}
   const list = {
+    id: shortid.generate(),
     name: listName,
     createdAt: new Date(), // For now
     items: [],
   }
 
   const payload = boards.map((board) => {
-    if (board.id === boardId) { board.lists.push(list) }
+    if (board.id === boardId) {
+      board.lists.push(list)
+      Object.assign(selectedBoard, board)
+    }
     return board
   })
 
@@ -98,5 +103,6 @@ export const addBoardList = async (listName, boardId) => {
   return {
     type: ADD_BOARD_LIST,
     payload,
+    selectedBoard,
   }
 }

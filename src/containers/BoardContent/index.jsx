@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import ReactRouterPropTypes from 'react-router-prop-types'
+import PropTypes from 'prop-types'
 
 import { Context } from '../../context'
 
@@ -8,11 +9,19 @@ import NotFoundPage from '../../components/NotFoundPage'
 import Spinner from '../../components/Spinner'
 import Button from '../../components/Button'
 import NewList from '../NewList'
+import BoardList from '../BoardList'
 
 import { BoardContentHeader, BoardContentWrapper, BoardContentMain } from './style'
 
 function BoardContent({ match, history }) {
-  const { state: { selectedBoard, loading, boardNotFound }, dispatch } = useContext(Context)
+  const {
+    state: {
+      selectedBoard,
+      loading,
+      boardNotFound,
+    },
+    dispatch,
+  } = useContext(Context)
   const { boardId } = match.params
 
   useEffect(() => {
@@ -41,14 +50,7 @@ function BoardContent({ match, history }) {
         />
         {renderBoard}
       </BoardContentHeader>
-      {
-        selectedBoard && !loading
-          ? (
-            <BoardContentMain>
-              <NewList />
-            </BoardContentMain>
-          ) : null
-      }
+      {selectedBoard && !loading ? <BoardMain selectedBoard={selectedBoard} /> : null}
     </BoardContentWrapper>
   )
 }
@@ -56,6 +58,21 @@ function BoardContent({ match, history }) {
 BoardContent.propTypes = {
   match: ReactRouterPropTypes.match.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
+}
+
+function BoardMain({ selectedBoard }) {
+  return (
+    <BoardContentMain>
+      {selectedBoard.lists.map(listData => <BoardList key={listData.id} listData={listData} />)}
+      <NewList />
+    </BoardContentMain>
+  )
+}
+
+BoardMain.propTypes = {
+  selectedBoard: PropTypes.shape({
+    lists: PropTypes.arrayOf(PropTypes.shape({})),
+  }).isRequired,
 }
 
 export default BoardContent
