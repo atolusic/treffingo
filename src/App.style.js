@@ -4,6 +4,7 @@ const colors = {
   secondary: '#ef9a9a',
   blacky: '#333',
   shadow: '#ccc',
+  grey: '#E7E7E7',
 }
 
 const fonts = {

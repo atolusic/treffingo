@@ -6,9 +6,14 @@ import CloseButton from '../CloseButton'
 
 import { ListWrapper } from './style'
 
-function List({ closeList, theme, children }) {
+function List({
+  closeList,
+  theme,
+  children,
+  overrideListStyle,
+}) {
   return (
-    <ListWrapper>
+    <ListWrapper overrideListStyle={overrideListStyle}>
       {closeList && <CloseButton onClick={closeList} color={theme.colors.primary} />}
       {children}
     </ListWrapper>
@@ -17,6 +22,7 @@ function List({ closeList, theme, children }) {
 
 List.defaultProps = {
   closeList: null,
+  overrideListStyle: {},
 }
 
 List.propTypes = {
@@ -30,6 +36,7 @@ List.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  overrideListStyle: PropTypes.shape(),
 }
 
 export default withTheme(List)

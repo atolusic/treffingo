@@ -42,7 +42,7 @@ function NewList() {
         onEntering={() => setShowButton(false)}
         timeout={50}
       >
-        <List closeList={() => setShowList(false)}>
+        <List overrideListStyle={{ width: '300px' }} closeList={() => setShowList(false)}>
           <NewListForm />
         </List>
       </AnimateOpacity>

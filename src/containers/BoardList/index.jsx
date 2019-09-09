@@ -5,10 +5,10 @@ import List from '../../components/List'
 
 import { ListItemContent } from './style'
 
-function ListItem() {
+function ListItem({ listData }) {
   return (
     <List>
-      <p>p</p>
+      p
     </List>
   )
 }
