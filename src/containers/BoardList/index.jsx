@@ -1,16 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withTheme } from 'emotion-theming'
 
 import List from '../../components/List'
+import Input from '../../components/Input'
 
 import { ListItemContent } from './style'
 
-function ListItem({ listData }) {
+function ListItem({ listData, theme }) {
   return (
     <List>
-      p
+      <ListItemContent>
+        <p>kurcic</p>
+        <Input additionalStyle={theme.listInput} />
+      </ListItemContent>
     </List>
   )
 }
 
-export default ListItem
+export default withTheme(ListItem)

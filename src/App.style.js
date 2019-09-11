@@ -43,6 +43,17 @@ const board = {
   },
 }
 
+const listInput = {
+  boxShadow: '0 3px 3px rgba(0,0,0,0.16), 0 3px 3px rgba(0,0,0,0.23)',
+  paddingLeft: '10px',
+}
+
+const newListInput = {
+  ...listInput,
+  marginBottom: '30px',
+  width: '85%',
+}
+
 export default {
   alignJustifyCenter,
   colors,
@@ -51,4 +62,6 @@ export default {
   flex,
   flexColumn,
   flexRow,
+  listInput,
+  newListInput,
 }

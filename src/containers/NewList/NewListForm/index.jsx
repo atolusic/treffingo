@@ -11,6 +11,7 @@ import useForm from '../../../utils/useForm'
 
 import { NewListFormWrapper } from './style'
 
+// TODO: theme
 const newListFormInputStyle = {
   boxShadow: '0 3px 3px rgba(0,0,0,0.16), 0 3px 3px rgba(0,0,0,0.23)',
   marginBottom: '30px',
