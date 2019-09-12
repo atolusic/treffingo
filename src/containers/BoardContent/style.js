@@ -25,6 +25,6 @@ export const BoardContentMain = styled.div(() => ({
   display: 'flex',
   width: '100%',
   '& > *': {
-    marginRight: '10px',
+    marginRight: '20px',
   },
 }))

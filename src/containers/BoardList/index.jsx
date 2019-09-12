@@ -7,15 +7,33 @@ import Input from '../../components/Input'
 
 import { ListItemContent } from './style'
 
-function ListItem({ listData, theme }) {
+import { getListById } from '../../actions/board'
+
+function ListItem({ listData: { name, id }, theme }) {
+  async function getbyid() {
+    console.log(await getListById(id))
+  }
+
+  getbyid()
+
   return (
     <List>
       <ListItemContent>
-        <p>kurcic</p>
+        <p>{name}</p>
         <Input additionalStyle={theme.listInput} />
       </ListItemContent>
     </List>
   )
+}
+
+ListItem.propTypes = {
+  listData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+  theme: PropTypes.shape({
+    listInput: PropTypes.shape({}),
+  }).isRequired,
 }
 
 export default withTheme(ListItem)

@@ -8,8 +8,9 @@ export const ListItemContent = styled.div(props => ({
   height: '100%',
   p: {
     margin: '20px auto 10px auto',
+    paddingBottom: '10px',
     height: '30%',
-    width: '80%',
+    width: '95%',
     borderBottom: `1px solid ${props.theme.colors.grey}`,
     textAlign: 'center',
     textTransform: 'uppercase',

@@ -10,7 +10,7 @@ import NewListForm from './NewListForm'
 const addListAdditionalStyle = {
   main: {
     width: '200px',
-    maxHeight: '300px',
+    height: '100px',
   },
   hover: {
     transform: 'scale(1.05)',
