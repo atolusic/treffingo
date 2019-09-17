@@ -14,8 +14,8 @@ import {
   START_LOADING,
   BOARD_NOT_FOUND,
   ADD_BOARD_LIST,
+  ADD_LIST_ITEM,
 } from '../constants/actionTypes'
-import { async } from 'q'
 
 const boardsLs = ls('boards')
 const addToLocalStorage = (delay = 300) => boardsLs(add, delay)
@@ -123,9 +123,46 @@ export const getListById = async (boardListId) => {
     return loop(boards[++index].lists, listId)
   }
 
-  return loop(listToSearch, boardListId)
+  return {
+    list: loop(listToSearch, boardListId),
+    boards,
+  }
 }
 
-export const addListItem = async () => {
+export const addListItem = async (listId, data = {}) => {
+  const listItem = {
+    id: shortid.generate(),
+    ...data,
+  }
 
+  const { list, boards } = await getListById(listId)
+  const board = boards.find(b => b.id === list.boardId)
+  const listToUpdate = board.lists.find(l => l.id === list.id)
+  const updatedListItems = [...listToUpdate.items, listItem]
+
+  listToUpdate.items = updatedListItems
+
+  const updatedBoardLists = board.lists.map((l) => {
+    if (l.id === listId) {
+      return listToUpdate
+    }
+
+    return l
+  })
+
+  board.lists = updatedBoardLists
+
+  const payload = boards.map((b) => {
+    if (b.id === board.id) {
+      return board
+    }
+
+    return b
+  })
+
+  return {
+    type: ADD_LIST_ITEM,
+    payload,
+    selectedBoard: board,
+  }
 }

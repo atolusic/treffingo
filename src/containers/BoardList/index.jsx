@@ -7,15 +7,9 @@ import Input from '../../components/Input'
 
 import { ListItemContent } from './style'
 
-import { getListById } from '../../actions/board'
+import { addListItem } from '../../actions/board'
 
 function ListItem({ listData: { name, id }, theme }) {
-  async function getbyid() {
-    console.log(await getListById(id))
-  }
-
-  getbyid()
-
   return (
     <List>
       <ListItemContent>
