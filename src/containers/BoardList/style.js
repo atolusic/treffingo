@@ -6,16 +6,17 @@ export const BoardListContent = styled.div(props => ({
   ...props.theme.alignJustifyCenter,
   width: '100%',
   height: '100%',
-  p: {
-    margin: '20px auto 10px auto',
-    paddingBottom: '10px',
-    height: '30%',
-    width: '95%',
-    borderBottom: `1px solid ${props.theme.colors.grey}`,
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    fontWeight: '500',
-  },
+}))
+
+export const ListName = styled.p(props => ({
+  margin: '20px auto 10px auto',
+  paddingBottom: '10px',
+  height: '30%',
+  width: '95%',
+  borderBottom: `1px solid ${props.theme.colors.grey}`,
+  textAlign: 'center',
+  textTransform: 'uppercase',
+  fontWeight: '500',
 }))
 
 export const Form = styled.form(() => ({

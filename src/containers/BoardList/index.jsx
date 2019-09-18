@@ -4,8 +4,9 @@ import { withTheme } from 'emotion-theming'
 
 import List from '../../components/List'
 import Input from '../../components/Input'
+import ListItem from '../../components/List/ListItem'
 
-import { BoardListContent, Form } from './style'
+import { BoardListContent, Form, ListName } from './style'
 import useForm from '../../utils/useForm'
 
 import { Context } from '../../context'
@@ -22,7 +23,7 @@ function BoardList({ listData: { name, id, items }, theme }) {
   return (
     <List>
       <BoardListContent>
-        <p>{name}</p>
+        <ListName>{name}</ListName>
         <Form onSubmit={onSubmit}>
           <Input
             inputValue={inputValue}
@@ -30,7 +31,7 @@ function BoardList({ listData: { name, id, items }, theme }) {
             onChange={onChange}
           />
         </Form>
-        {items.map(item => <h2 key={item.id}>{item.task}</h2>)}
+        {items.map(item => <ListItem key={item.id} listItemData={item} />)}
       </BoardListContent>
     </List>
   )
@@ -40,6 +41,7 @@ BoardList.propTypes = {
   listData: PropTypes.shape({
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    items: PropTypes.shape([]).isRequired,
   }).isRequired,
   theme: PropTypes.shape({
     listInput: PropTypes.shape({}),

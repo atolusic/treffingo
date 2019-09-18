@@ -5,6 +5,7 @@ const colors = {
   blacky: '#333',
   shadow: '#ccc',
   grey: '#E7E7E7',
+  pink: '#ffcdd2',
 }
 
 const fonts = {
