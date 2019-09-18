@@ -109,10 +109,10 @@ export const addBoardList = async (listName, boardId) => {
   }
 }
 
-export const getListById = async (boardListId) => {
-  const boards = await getParsedBoardsFromLs()
+export const getListById = (boards, boardListId) => {
   let index = 0
   const listToSearch = boards[index].lists
+
   const loop = (list, listId) => {
     for (let i = 0; i < list.length; i += 1) {
       if (list[i].id === listId) {
@@ -123,28 +123,25 @@ export const getListById = async (boardListId) => {
     return loop(boards[++index].lists, listId)
   }
 
-  return {
-    list: loop(listToSearch, boardListId),
-    boards,
-  }
+  return loop(listToSearch, boardListId)
 }
 
-export const addListItem = async (listId, data = {}) => {
+export const addListItem = async (task, listId) => {
+  const boards = await getParsedBoardsFromLs()
   const listItem = {
     id: shortid.generate(),
-    ...data,
+    task,
   }
 
-  const { list, boards } = await getListById(listId)
+  const list = getListById(boards, listId)
   const board = boards.find(b => b.id === list.boardId)
-  const listToUpdate = board.lists.find(l => l.id === list.id)
-  const updatedListItems = [...listToUpdate.items, listItem]
-
-  listToUpdate.items = updatedListItems
 
   const updatedBoardLists = board.lists.map((l) => {
     if (l.id === listId) {
-      return listToUpdate
+      return {
+        ...l,
+        items: [...list.items, listItem],
+      }
     }
 
     return l
@@ -159,6 +156,8 @@ export const addListItem = async (listId, data = {}) => {
 
     return b
   })
+
+  await addToLsWithStringify(payload)
 
   return {
     type: ADD_LIST_ITEM,

@@ -19,6 +19,8 @@ export const BoardContentWrapper = styled.div(() => ({
   display: 'flex',
   flexDirection: 'column',
   padding: '0 40px',
+  boxSizing: 'border-box',
+  width: '100%',
 }))
 
 export const BoardContentMain = styled.div(() => ({

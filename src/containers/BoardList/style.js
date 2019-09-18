@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 // eslint-disable-next-line
-export const ListItemContent = styled.div(props => ({
+export const BoardListContent = styled.div(props => ({
   ...props.theme.flexColumn,
   ...props.theme.alignJustifyCenter,
   width: '100%',
@@ -16,4 +16,9 @@ export const ListItemContent = styled.div(props => ({
     textTransform: 'uppercase',
     fontWeight: '500',
   },
+}))
+
+export const Form = styled.form(() => ({
+  width: '95%',
+  margin: '0 auto',
 }))
