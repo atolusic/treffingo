@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from 'emotion-theming'
+import { useDrop } from 'react-dnd'
 
 import List from '../../components/List'
 import Input from '../../components/Input'
@@ -10,7 +11,7 @@ import { BoardListContent, Form, ListName } from './style'
 import useForm from '../../utils/useForm'
 
 import { Context } from '../../context'
-import { addListItem } from '../../actions/board'
+import { addListItem, dragListItem } from '../../actions/board'
 
 function BoardList({ listData: { name, id, items }, theme }) {
   const { dispatch } = useContext(Context)
@@ -20,8 +21,15 @@ function BoardList({ listData: { name, id, items }, theme }) {
     onSubmit,
   } = useForm(dispatch, { fn: addListItem, params: [id] })
 
+  const [, drop] = useDrop({
+    accept: 'listItem',
+    drop: (item) => {
+      dispatch(dragListItem(id, item.itemData))
+    },
+  })
+
   return (
-    <List>
+    <List overrideListStyle={{ display: 'inline-block' }}>
       <BoardListContent>
         <ListName>{name}</ListName>
         <Form onSubmit={onSubmit}>
@@ -31,7 +39,9 @@ function BoardList({ listData: { name, id, items }, theme }) {
             onChange={onChange}
           />
         </Form>
-        {items.map(item => <ListItem key={item.id} listItemData={item} />)}
+        <div style={{ width: '95%', margin: '0 auto' }} ref={drop}>
+          {items.map(item => <ListItem key={item.id} listItemData={item} />)}
+        </div>
       </BoardListContent>
     </List>
   )

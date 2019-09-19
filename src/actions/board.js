@@ -2,6 +2,7 @@ import shortid from 'shortid'
 
 import {
   ls,
+  lsSync,
   add,
   stringify,
   parse,
@@ -15,7 +16,14 @@ import {
   BOARD_NOT_FOUND,
   ADD_BOARD_LIST,
   ADD_LIST_ITEM,
+  DRAG_LIST_ITEM,
 } from '../constants/actionTypes'
+
+const boardsLsSync = lsSync('boards')
+const addSync = boardsLsSync(add)
+const addSyncWithStringify = data => addSync(stringify(data))
+const getSync = boardsLsSync(get)
+const getParsedBoardsFromLsSync = () => parse(getSync())
 
 const boardsLs = ls('boards')
 const addToLocalStorage = (delay = 300) => boardsLs(add, delay)
@@ -130,6 +138,7 @@ export const addListItem = async (task, listId) => {
   const boards = await getParsedBoardsFromLs()
   const listItem = {
     id: shortid.generate(),
+    listId,
     task,
   }
 
@@ -161,6 +170,55 @@ export const addListItem = async (task, listId) => {
 
   return {
     type: ADD_LIST_ITEM,
+    payload,
+    selectedBoard: board,
+  }
+}
+
+export const dragListItem = (listId, item) => {
+  const boards = getParsedBoardsFromLsSync()
+  const list = getListById(boards, listId)
+
+  list.items.push(item)
+
+  const filteredListItems = getListById(boards, item.listId)
+    .items
+    .filter(i => i.id !== item.id)
+
+  const board = boards.find(b => b.id === list.boardId)
+
+  const updatedBoardLists = board.lists.map((l) => {
+    if (l.id === listId) {
+      return {
+        ...l,
+        items: list,
+      }
+    }
+
+    if (l.id === item.listId) {
+      return {
+        ...l,
+        items: filteredListItems,
+      }
+    }
+
+    return l
+  })
+
+  board.lists = updatedBoardLists
+
+  const payload = boards.map((b) => {
+    if (b.id === board.id) {
+      return board
+    }
+
+    return b
+  })
+
+  addSyncWithStringify(payload)
+
+  return {
+    type: DRAG_LIST_ITEM,
     payload,
     selectedBoard: board,
   }

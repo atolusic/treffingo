@@ -10,3 +10,4 @@ export const GET_THEME = 'GET_THEME'
 
 export const ADD_BOARD_LIST = 'ADD_BOARD_LIST'
 export const ADD_LIST_ITEM = 'ADD_LIST_ITEM'
+export const DRAG_LIST_ITEM = 'DRAG_LIST_ITEM'

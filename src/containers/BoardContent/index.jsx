@@ -1,6 +1,8 @@
 import React, { useEffect, useContext } from 'react'
 import ReactRouterPropTypes from 'react-router-prop-types'
 import PropTypes from 'prop-types'
+import HTML5Backend from 'react-dnd-html5-backend'
+import { DndProvider } from 'react-dnd'
 
 import { Context } from '../../context'
 
@@ -62,10 +64,17 @@ BoardContent.propTypes = {
 
 function BoardMain({ selectedBoard }) {
   return (
-    <BoardContentMain>
-      {selectedBoard.lists.map(listData => <BoardList key={listData.id} listData={listData} />)}
-      <NewList />
-    </BoardContentMain>
+    <DndProvider backend={HTML5Backend}>
+      <BoardContentMain>
+        {selectedBoard.lists.map(listData => (
+          <BoardList
+            key={listData.id}
+            listData={listData}
+          />
+        ))}
+        <NewList />
+      </BoardContentMain>
+    </DndProvider>
   )
 }
 

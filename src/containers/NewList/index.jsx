@@ -11,6 +11,8 @@ const addListAdditionalStyle = {
   main: {
     width: '200px',
     height: '100px',
+    position: 'relative',
+    top: '15px',
   },
   hover: {
     transform: 'scale(1.05)',
@@ -42,7 +44,7 @@ function NewList() {
         onEntering={() => setShowButton(false)}
         timeout={50}
       >
-        <List overrideListStyle={{ width: '300px' }} closeList={() => setShowList(false)}>
+        <List overrideListStyle={{ width: '300px', display: 'inline-block' }} closeList={() => setShowList(false)}>
           <NewListForm />
         </List>
       </AnimateOpacity>

@@ -5,7 +5,7 @@ export const ListItemWrapper = styled.div((props) => ({
   backgroundColor: props.theme.colors.pink,
   height: '50px',
   margin: '10px 0',
-  width: '95%',
+  width: '100%',
   border: '1px solid transparent',
   borderRadius: '3px',
   display: 'flex',
