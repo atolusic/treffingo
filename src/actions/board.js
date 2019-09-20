@@ -178,20 +178,60 @@ export const addListItem = async (task, listId) => {
 export const dragListItem = (listId, item) => {
   const boards = getParsedBoardsFromLsSync()
   const list = getListById(boards, listId)
+  const board = boards.find(b => b.id === list.boardId)
 
-  list.items.push(item)
+  if (listId === item.listId) {
+    const index = list.items.findIndex(i => i.id === item.id)
+    const data = list.items
+
+    const moveItem = (from, to) => {
+      const f = data.splice(from, 1)[0]
+
+      data.splice(to, 0, f)
+    }
+
+    moveItem(index, data.length)
+
+    board.lists = board.lists.map((l) => {
+      if (l.id === listId) {
+        return {
+          ...l,
+          items: list.items,
+        }
+      }
+
+      return l
+    })
+
+    const payload = boards.map((b) => {
+      if (b.id === board.id) {
+        return board
+      }
+
+      return b
+    })
+
+    return {
+      type: DRAG_LIST_ITEM,
+      payload,
+      selectedBoard: board,
+    }
+  }
+
+  list.items.push({
+    ...item,
+    listId,
+  })
 
   const filteredListItems = getListById(boards, item.listId)
     .items
     .filter(i => i.id !== item.id)
 
-  const board = boards.find(b => b.id === list.boardId)
-
   const updatedBoardLists = board.lists.map((l) => {
     if (l.id === listId) {
       return {
         ...l,
-        items: list,
+        items: list.items,
       }
     }
 
