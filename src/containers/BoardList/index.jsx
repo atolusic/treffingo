@@ -29,7 +29,7 @@ function BoardList({ listData: { name, id, items }, theme }) {
   })
 
   return (
-    <List overrideListStyle={{ display: 'inline-block' }}>
+    <List overrideListStyle={{ alignSelf: 'flex-start' }}>
       <BoardListContent>
         <ListName>{name}</ListName>
         <Form onSubmit={onSubmit}>

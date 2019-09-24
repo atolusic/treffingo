@@ -5,6 +5,7 @@ export const Container = styled.div(props => ({
   backgroundColor: props.backgroundColor,
   height: '100%',
   padding: '20px 50px',
+  transition: 'all .3s',
 }))
 
 export const SwitchWrapper = styled.div(() => ({
