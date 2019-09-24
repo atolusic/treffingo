@@ -11,8 +11,6 @@ const addListAdditionalStyle = {
   main: {
     width: '200px',
     height: '100px',
-    position: 'relative',
-    top: '15px',
   },
   hover: {
     transform: 'scale(1.05)',
